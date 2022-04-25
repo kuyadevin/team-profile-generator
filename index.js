@@ -10,15 +10,6 @@ const Intern = require('./lib/intern');
 //Empty array representing new team
 const team = [];
 
-// Employee questions
-
-const employeeCard = inquirer.prompt([
-    {
-        type: 'input',
-        message:
-    },
-])
-
 // manager question
 const managerCard = inquirer.prompt([
     {
