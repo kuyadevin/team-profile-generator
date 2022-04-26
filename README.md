@@ -17,6 +17,10 @@ This application is a team profile generator meant to fill out a team portfolio 
 
 ## Example and Video Guide
 
+![Screenshot](./assets/Screenshot%20(59).png)
+
+[Video Link](https://drive.google.com/file/d/1coZlhcWtrcuIqphUvC8T10YNlc-GGIb0/view)
+
 ## Authors
 Made by Devin 
 - [Github](https://github.com/kuyadevin)
