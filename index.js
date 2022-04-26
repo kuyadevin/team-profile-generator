@@ -1,14 +1,15 @@
 // Node modules
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path= require ('path');
 
 // Roles
-const Manager = require('../lib/manager');
-const Engineer = require('../lib/engineer');
-const Intern = require('../lib/intern');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 
 //Created HTML Page
-const generateProfile = require('../src/generateProfile');
+const makeTeam = require('./src/generateProfile');
 
 //Empty array representing new team
 const team = [];
@@ -46,7 +47,7 @@ const managerCard = () => {
     .then((managerAnswers)=>{
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber)
         team.push(manager)
-        switch(managerAnswers.addmember){
+        switch(managerAnswers.addTeammate){
             case 'Engineer':
                 engineerCard();
                 break;
@@ -54,7 +55,7 @@ const managerCard = () => {
                 internCard();
                 break;
             default:
-                writeToFile('dist/index.html', generateProfile(team))
+                writeToFile('dist/index.html', makeTeam(team))
         }
     })
 }
@@ -81,12 +82,18 @@ const engineerCard =  () => {
             type: 'input',
             message: "What is the engineer's GitHub username?",
             name: 'github', 
+        },
+        {
+            type: 'list',
+            message: 'What type of team memeber would you like to add next?',
+            name: 'addTeammate',
+            choices: ['Engineer','Intern', 'All done'],
         }
     ])
-    .then((managerAnswers)=>{
+    .then((engineerAnswers)=>{
         const engineer = new Engineer (engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.gitHub)
         team.push(engineer)
-        switch(engineerAnswers.addmember){
+        switch(engineerAnswers.addTeammate){
             case 'Engineer':
                 engineerCard();
                 break;
@@ -94,7 +101,7 @@ const engineerCard =  () => {
                 internCard();
                 break;
             default:
-                writeToFile('dist/index.html', generateProfile(team))
+                writeToFile('dist/index.html', makeTeam(team))
         }
     })
 }
@@ -120,12 +127,18 @@ const internCard =  () => {
             type: 'input',
             message: "What school does the intern attend?",
             name: 'school', 
+        },
+        {
+            type: 'list',
+            message: 'What type of team memeber would you like to add next?',
+            name: 'addTeammate',
+            choices: ['Engineer','Intern', 'All done'],
         }
     ])
-    .then((managerAnswers)=>{
-        const intern = new intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school)
+    .then((internAnswers)=>{
+        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school)
         team.push(intern)
-        switch(internAnswers.addmember){
+        switch(internAnswers.addTeammate){
             case 'Engineer':
                 engineerCard();
                 break;
@@ -133,7 +146,16 @@ const internCard =  () => {
                 internCard();
                 break;
             default:
-                writeToFile('dist/index.html', generateProfile(team))
+                writeToFile('dist/index.html', makeTeam(team))
         }
+    })
+}
+
+managerCard();
+
+function writeToFile(filename, data){
+   return fs.writeFile('dist/index.html', data, (err) => {
+        if (err) throw err;
+        console.log('File saved')
     })
 }
