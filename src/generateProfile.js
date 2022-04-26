@@ -80,8 +80,10 @@ const makeAllTeam = team => {
         <div class = "container-md text-center">
             <h1>Team Profile</h1>
         </div>
-    ${makeAllTeam(team)}
-    
+        <div class= "container">
+            <div class= "justify-content"> 
+            ${makeAllTeam(team)}
+            </div>    
     </body>
     </html>
 
