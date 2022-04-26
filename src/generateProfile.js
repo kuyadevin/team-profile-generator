@@ -6,7 +6,7 @@ const makeAllTeam = team => {
 
     const makeManager = manager => {
             return `
-            <div class = "column">
+            <div class = "col-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">${manager.getRole()}</h5>
@@ -22,14 +22,14 @@ const makeAllTeam = team => {
 
     const makeEngineer = engineer => {
             return `
-            <div class = "column">
+            <div class = "col-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">${engineer.getRole()}</h5>
                         <h6 class="name mb-2">${engineer.name}</h6>
                         <p class="id">Employee ID Number: ${engineer.id}</p>
                         <p class="email">E-Mail Address: ${engineer.email}</p>
-                        <p class="gitHub">GitHub Username: ${engineer.getGithub()}</p>
+                        <p class="gitHub">GitHub Username: github.com/${engineer.getGithub()}</p>
                     </div>
                 </div>
             </div>
@@ -38,14 +38,14 @@ const makeAllTeam = team => {
 
     const makeIntern = intern => {
             return `
-            <div class = "column">
+            <div class = "col-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">${intern.getRole()}</h5>
                         <h6 class="name mb-2">${intern.name}</h6>
                         <p class="id">Employee ID Number: ${intern.id}</p>
-                        <p class="email">E-Mail Address: ${intern.email}</p>
-                        <p class="officeNumber">School: ${intern.getSchool()}</p>
+                        <p class="email">E-Mail Address:>${intern.email}</p>
+                        <p class="school">School: ${intern.getSchool()}</p>
                     </div>
                 </div>
             </div>   
@@ -84,8 +84,9 @@ function makeTeam(team){
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Team Profile</title>
+        <title class = ".bg-info">Team Profile</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="./assets.style.css">
     </head>
     <body>
         <div class = "container-md text-center">
